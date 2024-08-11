@@ -1,23 +1,31 @@
-import logo from './logo.svg';
 import './App.css';
+import { useState } from 'react';
+import Contador from './components/Contador';
+import Boton from './components/Boton';
 
 function App() {
+
+  const [numClicks, setNumClicks] = useState(0);
+
+  const Sumar = () => { 
+    setNumClicks(numClicks + 1);
+  }
+  const Reiniciar = () => {
+    setNumClicks(0);
+  }
+  
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Contador numClicks={numClicks} />
+      <Boton
+        text='Suma'
+        esSuma={true}
+        accion={Sumar} />
+      <Boton
+        text='Reiniciar'
+        esSuma={false}
+        accion={Reiniciar} />
     </div>
   );
 }
